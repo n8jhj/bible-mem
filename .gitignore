@@ -1,10 +1,13 @@
 # Compiled python files
-__pycache__
+__pycache__/
 *.pyc
 
-# Test coverage
+# Tests - Pytest
+.pytest_cache/
+
+# Tests - coverage
 .coverage
 cov.xml
 
 # Distribution
-dist
+dist/
