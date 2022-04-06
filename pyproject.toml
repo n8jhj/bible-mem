@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "pyproject-template"
+version = "0.1.0"
+description = "A template for my Python projects."
+authors = ["n8jhj <n8jhj@live.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+pytest-cov = "^3.0.0"
+black = "^21.10b0"
+
+[tool.pytest.ini_options]
+minversion = "6.0"  # Requires at least pytest 6.0
+addopts = "-ra -q"  # -ra: test summary, all except passes; -q: quiet mode
+testpaths = [
+    "test",
+]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

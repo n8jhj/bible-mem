@@ -1,0 +1,13 @@
+# Compiled python files
+__pycache__
+*.pyc
+
+# Test coverage
+.coverage
+cov.xml
+
+# Distribution
+dist
+
+# IDE
+.vscode/
