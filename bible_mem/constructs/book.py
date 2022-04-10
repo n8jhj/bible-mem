@@ -1,4 +1,4 @@
-from .const import BIBLE_BOOKS_FLAT
+from bible_mem.const import BIBLE_BOOKS_FLAT
 
 
 class Book:

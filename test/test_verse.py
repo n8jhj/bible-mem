@@ -1,6 +1,4 @@
-from bible_mem.book import Book
-from bible_mem.reference import Reference
-from bible_mem.verse import Verse
+from bible_mem.constructs import Book, Reference, Verse
 
 
 def test_verse():

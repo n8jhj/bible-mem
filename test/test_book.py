@@ -1,6 +1,6 @@
 import pytest
 
-from bible_mem.book import Book
+from bible_mem.constructs import Book
 
 
 def test_book():

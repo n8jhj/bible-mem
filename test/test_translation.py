@@ -1,6 +1,6 @@
 import pytest
 
-from bible_mem.translation import Translation
+from bible_mem.constructs import Translation
 
 
 def test_translation():
