@@ -12,3 +12,6 @@ with open(Path(__file__).parent / "books.json", "r") as jf:
 BIBLE_BOOKS_FLAT = (
     BIBLE_BOOKS["OLD_TESTAMENT_BOOKS"] | BIBLE_BOOKS["NEW_TESTAMENT_BOOKS"]
 )
+
+with open(Path(__file__).parent / "translations.json", "r") as jf:
+    BIBLE_TRANSLATIONS = json.load(jf)["BIBLE_TRANSLATIONS"]
