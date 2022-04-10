@@ -8,5 +8,5 @@ def test_verse():
         Translation("New International Version", 2011),
         text,
     )
-    assert repr(verse) == "Verse<He. 13:8 (NIV; 2011)>"
+    assert repr(verse) == "<Verse(He. 13:8 - NIV 2011)>"
     assert verse.text == text

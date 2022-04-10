@@ -14,7 +14,7 @@ class Translation:
 
     @property
     def readout(self):
-        return f"{self.abbreviation} ({self.year_published})"
+        return f"{self.abbreviation} {self.year_published}"
 
     def __repr__(self):
-        return f"Translation<{self.readout}>"
+        return f"<Translation({self.readout})>"

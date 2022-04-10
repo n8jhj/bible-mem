@@ -9,4 +9,4 @@ class Book:
         self.abbreviation = BIBLE_BOOKS_FLAT[name]["abbreviation"]
 
     def __repr__(self):
-        return f"Book<{self.name}>"
+        return f"<Book({self.name})>"

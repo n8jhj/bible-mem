@@ -12,5 +12,5 @@ def test_book():
     book = Book("Zephaniah")
 
     # Check __repr__.
-    assert repr(book) == "Book<Zephaniah>"
+    assert repr(book) == "<Book(Zephaniah)>"
     assert book.abbreviation == "Zp"

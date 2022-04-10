@@ -10,8 +10,8 @@ class Verse:
 
     def __repr__(self):
         return (
-            f"Verse<"
-            f"{self.reference.readout} "
-            f"({self.translation.abbreviation}; {self.translation.year_published})"
-            f">"
+            f"<Verse("
+            f"{self.reference.readout} - "
+            f"{self.translation.abbreviation} {self.translation.year_published}"
+            f")>"
         )

@@ -12,4 +12,4 @@ class Reference:
         return f"{self.book.abbreviation}. {self.chapter}:{self.vern}"
 
     def __repr__(self):
-        return f"Reference<{self.readout}>"
+        return f"<Reference({self.readout})>"

@@ -12,4 +12,4 @@ def test_translation():
 
     # Valid translation.
     translation = Translation("New International Version", 1984)
-    assert repr(translation) == "Translation<NIV (1984)>"
+    assert repr(translation) == "<Translation(NIV 1984)>"
