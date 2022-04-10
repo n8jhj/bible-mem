@@ -1,0 +1,48 @@
+{
+    "BIBLE_TRANSLATIONS": {
+        "English Standard Version": {
+            "abbreviation": "ESV",
+            "publish-years": [
+                2001,
+                2007,
+                2011,
+                2016
+            ]
+        },
+        "King James Version": {
+            "abbreviation": "KJV",
+            "publish-years": [
+                1611,
+                1769
+            ]
+        },
+        "New American Standard Bible": {
+            "abbreviation": "NASB",
+            "publish-years": [
+                1971,
+                1995,
+                2020
+            ]
+        },
+        "New International Version": {
+            "abbreviation": "NIV",
+            "publish-years": [
+                1978,
+                1984,
+                2011
+            ]
+        },
+        "New King James Version": {
+            "abbreviation": "NKJV",
+            "publish-years": [
+                1982
+            ]
+        },
+        "World English Bible": {
+            "abbreviation": "WEB",
+            "publish-years": [
+                2000
+            ]
+        }
+    }
+}
