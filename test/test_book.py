@@ -14,3 +14,7 @@ def test_book():
     # Check __repr__.
     assert repr(book) == "<Book(Zephaniah)>"
     assert book.abbreviation == "Zp"
+
+    # Check __eq__.
+    assert book == Book("Zephaniah")
+    assert book != Book("Genesis")

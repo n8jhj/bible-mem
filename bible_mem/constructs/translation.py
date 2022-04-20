@@ -21,6 +21,13 @@ class Translation:
     def __repr__(self):
         return f"<Translation({self.readout})>"
 
+    def __eq__(self, other):
+        return (
+            self.name == other.name
+            and self.abbreviation == other.abbreviation
+            and self.year_published == other.year_published
+        )
+
 
 def parse_translation_string(text: str) -> Translation:
     """Parses a string representation of a Translation."""

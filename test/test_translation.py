@@ -14,6 +14,10 @@ def test_translation():
     translation = Translation("New International Version", 1984)
     assert repr(translation) == "<Translation(NIV 1984)>"
 
+    # Test __eq__.
+    assert translation == Translation("New International Version", 1984)
+    assert translation != Translation("English Standard Version", 2001)
+
 
 @pytest.mark.parametrize(
     "text, expected, expected_error",

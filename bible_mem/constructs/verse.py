@@ -15,3 +15,10 @@ class Verse:
             f"{self.translation.abbreviation} {self.translation.year_published}"
             f")>"
         )
+
+    def __eq__(self, other):
+        return (
+            self.reference == other.reference
+            and self.translation == other.translation
+            and self.text == other.text
+        )

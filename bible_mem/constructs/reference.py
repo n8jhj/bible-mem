@@ -13,3 +13,10 @@ class Reference:
 
     def __repr__(self):
         return f"<Reference({self.readout})>"
+
+    def __eq__(self, other):
+        return (
+            self.book == other.book
+            and self.chapter == other.chapter
+            and self.vern == other.vern
+        )

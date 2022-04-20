@@ -10,3 +10,6 @@ class Book:
 
     def __repr__(self):
         return f"<Book({self.name})>"
+
+    def __eq__(self, other):
+        return self.name == other.name and self.abbreviation == other.abbreviation

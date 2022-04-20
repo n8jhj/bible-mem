@@ -10,3 +10,15 @@ def test_verse():
     )
     assert repr(verse) == "<Verse(He. 13:8 - NIV 2011)>"
     assert verse.text == text
+
+    # Test __eq__.
+    assert verse == Verse(
+        Reference(Book("Hebrews"), 13, 8),
+        Translation("New International Version", 2011),
+        text,
+    )
+    assert verse != Verse(
+        Reference(Book("Romans"), 13, 8),
+        Translation("New International Version", 2011),
+        text,
+    )
