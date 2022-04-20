@@ -15,3 +15,7 @@ BIBLE_BOOKS_FLAT = (
 
 with open(Path(__file__).parent / "translations.json", "r") as jf:
     BIBLE_TRANSLATIONS = json.load(jf)["BIBLE_TRANSLATIONS"]
+
+BIBLE_TRANSLATION_ABBREVIATION_MAP = {}
+for name, data in BIBLE_TRANSLATIONS.items():
+    BIBLE_TRANSLATION_ABBREVIATION_MAP[data["abbreviation"]] = name
