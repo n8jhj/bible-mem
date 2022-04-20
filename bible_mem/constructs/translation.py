@@ -1,4 +1,6 @@
-from bible_mem.const import BIBLE_TRANSLATIONS
+import re
+
+from bible_mem.const import BIBLE_TRANSLATION_ABBREVIATION_MAP, BIBLE_TRANSLATIONS
 
 
 class Translation:
@@ -18,3 +20,24 @@ class Translation:
 
     def __repr__(self):
         return f"<Translation({self.readout})>"
+
+
+def parse_translation_string(text: str) -> Translation:
+    """Parses a string representation of a Translation."""
+    abbreviation_regex = re.compile(r"([A-Z]+) \(([0-9]{4})\)")
+    fullname_or_abbreviation_regex = re.compile(r"([\w ]+) \(([0-9]{4})\)")
+    # Since the second regex object will also match the abbreviation style,
+    # run it after the first.
+    match = abbreviation_regex.fullmatch(text)
+    if match is None:
+        match = fullname_or_abbreviation_regex.fullmatch(text)
+        if match is None:
+            raise ValueError(f"Translation parsing failed for: {text!r}")
+        else:
+            name = match.group(1)
+            year = int(match.group(2))
+    else:
+        trans = match.group(1)
+        year = int(match.group(2))
+        name = BIBLE_TRANSLATION_ABBREVIATION_MAP[trans]
+    return Translation(name, year)
