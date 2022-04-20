@@ -28,7 +28,7 @@ def test_parse_translation_string(
     text: str, expected: Translation, expected_error: Exception
 ):
     if expected_error:
-        with pytest.raises(expected_error):
+        with pytest.raises(expected_error):  # type: ignore # pytest.raises unjustly complains about Exception type input.
             parse_translation_string(text)
         return
     assert _translations_equal(parse_translation_string(text), expected)
