@@ -75,6 +75,14 @@ tomli = {version = "*", optional = true, markers = "extra == \"toml\""}
 toml = ["tomli"]
 
 [[package]]
+name = "drawille"
+version = "0.1.0"
+description = "Drawing in terminal with unicode braille characters"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "iniconfig"
 version = "1.1.1"
 description = "iniconfig: brain-dead simple config-ini parsing"
@@ -199,7 +207,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "4d99fc3506312cb1d47a80b0c6104b055246a8f8dd23d16f8990954ed8915f5e"
+content-hash = "1129e029bf15fbca8c55b34a20a3dc9b5fe271237557e15e4ce01bbe19d5b20d"
 
 [metadata.files]
 atomicwrites = [
@@ -285,6 +293,9 @@ coverage = [
     {file = "coverage-6.3.2-cp39-cp39-win_amd64.whl", hash = "sha256:9548f10d8be799551eb3a9c74bbf2b4934ddb330e08a73320123c07f95cc2d92"},
     {file = "coverage-6.3.2-pp36.pp37.pp38-none-any.whl", hash = "sha256:18d520c6860515a771708937d2f78f63cc47ab3b80cb78e86573b0a760161faf"},
     {file = "coverage-6.3.2.tar.gz", hash = "sha256:03e2a7826086b91ef345ff18742ee9fc47a6839ccd517061ef8fa1976e652ce9"},
+]
+drawille = [
+    {file = "drawille-0.1.0.tar.gz", hash = "sha256:b789d2f1359b10628789b21b2df659c9c3d0c53884cee27b0d8b1ae93c22fbcb"},
 ]
 iniconfig = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
