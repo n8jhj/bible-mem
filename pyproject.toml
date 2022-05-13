@@ -8,6 +8,7 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "~3.8"
 blessed = "^1.19.1"
+platformdirs = "^2.5.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
