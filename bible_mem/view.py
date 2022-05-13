@@ -1,6 +1,7 @@
 import blessed
 
 from .__version__ import VERSION
+from .db import reset_db
 
 
 term = blessed.Terminal()
@@ -59,6 +60,9 @@ def draw_splash_screen():
 def reset_db_screen():
     info_text = "Database reset"
     status_text = "Press ENTER to continue"
+
+    # Perform action.
+    reset_db()
 
     # Flush screen.
     print(term.clear + term.white_on_black + term.home)
