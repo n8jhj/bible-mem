@@ -17,7 +17,9 @@ def main_loop():
             if ks.code == term.KEY_ESCAPE:
                 break
             elif ks == "0":
-                reset_db_screen()
+                reset_db()
+                draw_reset_db_screen()
+                wait_for_key_enter()
                 draw_splash_screen()
 
 
@@ -57,12 +59,9 @@ def draw_splash_screen():
         )
 
 
-def reset_db_screen():
+def draw_reset_db_screen():
     info_text = "Database reset"
     status_text = "Press ENTER to continue"
-
-    # Perform action.
-    reset_db()
 
     # Flush screen.
     print(term.clear + term.white_on_black + term.home)
@@ -83,7 +82,8 @@ def reset_db_screen():
             + term.normal
         )
 
-    # Wait for input.
+
+def wait_for_key_enter():
     ks = None
     while True:
         ks = term.inkey(timeout=3)
