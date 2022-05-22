@@ -1,7 +1,12 @@
+import functools
+
 import blessed
 
 from .__version__ import VERSION
 from .db import reset_db
+
+# Create print function for user input.
+echo = functools.partial(print, end="", flush=True)
 
 
 term = blessed.Terminal()
@@ -10,7 +15,7 @@ term = blessed.Terminal()
 def main_loop():
     draw_splash_screen()
 
-    with term.cbreak():
+    with term.hidden_cursor(), term.cbreak():
         ks = None
         while True:
             ks = term.inkey(timeout=3)
@@ -135,5 +140,7 @@ def wait_for_input():
         ks = term.inkey(timeout=3)
         if ks.code == term.KEY_ENTER:
             break
+        elif ks.code == term.KEY_BACKSPACE:
+            echo("\b \b")
         elif not ks.is_sequence:
-            print(ks, end="", flush=True)
+            echo(ks)
