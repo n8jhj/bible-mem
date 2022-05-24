@@ -1,12 +1,8 @@
-import functools
-
 import blessed
 
 from .__version__ import VERSION
 from .db import reset_db
-
-# Create print function for user input.
-echo = functools.partial(print, end="", flush=True)
+from .editor import wait_for_editor_input
 
 
 term = blessed.Terminal()
@@ -28,7 +24,7 @@ def main_loop():
                 draw_splash_screen()
             elif ks == "1":
                 draw_add_verse_screen_1()
-                wait_for_input()
+                wait_for_editor_input(term)
                 draw_splash_screen()
 
 
@@ -132,15 +128,3 @@ def draw_add_verse_screen_1():
             + term.cub(5)
             + term.normal
         )
-
-
-def wait_for_input():
-    ks = None
-    while True:
-        ks = term.inkey(timeout=3)
-        if ks.code == term.KEY_ENTER:
-            break
-        elif ks.code == term.KEY_BACKSPACE:
-            echo("\b \b")
-        elif not ks.is_sequence:
-            echo(ks)
