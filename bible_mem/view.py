@@ -24,8 +24,9 @@ def main_loop():
                 draw_splash_screen()
             elif ks == "1":
                 draw_add_verse_screen_1()
-                wait_for_editor_input(term)
+                input_ = wait_for_editor_input(term)
                 draw_splash_screen()
+                print(f"..> {input_}")
 
 
 def draw_splash_screen():
