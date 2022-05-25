@@ -1,4 +1,6 @@
 import functools
+import re
+from typing import NamedTuple, Optional
 
 import blessed
 from blessed.keyboard import Keystroke
@@ -43,3 +45,23 @@ def wait_for_editor_input(term: blessed.Terminal) -> str:
             text += ks
             echo(ks)
     return text
+
+
+class Verse(NamedTuple):
+    book: str
+    chapter: Optional[int]
+    verse_num: int
+    text: str
+
+    def __repr__(self):
+        return f"{self.book} {self.chapter}:{self.verse_num}"
+
+
+def parse_reference(ref: str) -> Verse:
+    expr = re.compile(r"([0-9])? *([\w ]+) +([0-9]+):?([0-9]+)")
+    match = expr.fullmatch(ref)
+    if not match:
+        raise ValueError(f"Invalid reference: {ref!r}")
+    book_num, book_name, chapter, verse_num = match.groups()
+    book = f"{book_num} {book_name}" if book_num else book_name
+    return Verse(book, chapter, verse_num, "")

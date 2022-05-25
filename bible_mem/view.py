@@ -1,6 +1,11 @@
+from __future__ import annotations
 import blessed
+from typing import TYPE_CHECKING
 
 from .__version__ import VERSION
+
+if TYPE_CHECKING:
+    from .input import Verse
 
 
 def draw_splash_screen(term: blessed.Terminal):
@@ -85,7 +90,56 @@ def draw_add_verse_screen_1(term: blessed.Terminal):
             print(
                 term.ljust(" " * info_text_margin + line)
             )
-        print()
+
+    # Print status bar.
+    with term.location(0, term.height - 2):
+        print(
+            term.snow_on_cyan
+            + term.ljust(" " * status_text_margin + f"{status_text}")
+            + term.cub(5)
+            + term.normal
+        )
+
+
+def draw_add_verse_screen_1_error(term: blessed.Terminal, bad_ref: str):
+    info_text = f"Invalid reference: {bad_ref!r}"
+    info_text_margin = 12
+    status_text = "Press ENTER to continue"
+    status_text_margin = 2
+
+    # Flush screen.
+    print(term.clear + term.white_on_black + term.home)
+
+    # Print content.
+    with term.location(0, term.height // 2 - 4):
+        print(
+            term.normal + term.ljust(" " * info_text_margin + info_text)
+        )
+
+    # Print status bar.
+    with term.location(0, term.height - 2):
+        print(
+            term.snow_on_cyan
+            + term.ljust(" " * status_text_margin + f"{status_text}")
+            + term.cub(5)
+            + term.normal
+        )
+
+
+def draw_add_verse_screen_2(term: blessed.Terminal, verse: Verse):
+    info_text = f"Accepted: {verse}"
+    info_text_margin = 12
+    status_text = "Press ENTER to continue"
+    status_text_margin = 2
+
+    # Flush screen.
+    print(term.clear + term.white_on_black + term.home)
+
+    # Print content.
+    with term.location(0, term.height // 2 - 4):
+        print(
+            term.normal + term.ljust(" " * info_text_margin + info_text)
+        )
 
     # Print status bar.
     with term.location(0, term.height - 2):

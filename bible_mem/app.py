@@ -1,8 +1,14 @@
 import blessed
 
 from .db import reset_db
-from .input import wait_for_editor_input, wait_for_key_enter
-from .view import draw_add_verse_screen_1, draw_reset_db_screen, draw_splash_screen
+from .input import parse_reference, wait_for_editor_input, wait_for_key_enter
+from .view import (
+    draw_add_verse_screen_1,
+    draw_add_verse_screen_1_error,
+    draw_add_verse_screen_2,
+    draw_reset_db_screen,
+    draw_splash_screen,
+)
 
 
 term = blessed.Terminal()
@@ -30,7 +36,18 @@ def do_reset_db():
 
 
 def do_add_verse():
-    draw_add_verse_screen_1(term)
-    input_ = wait_for_editor_input(term)
+    ref_accepted = False
+    while True:
+        draw_add_verse_screen_1(term)
+        input_ = wait_for_editor_input(term)
+        verse = None
+        try:
+            verse = parse_reference(input_)
+        except ValueError:
+            draw_add_verse_screen_1_error(term, input_)
+            wait_for_key_enter(term)
+            continue
+        break
+    draw_add_verse_screen_2(term, verse)
+    wait_for_key_enter(term)
     draw_splash_screen(term)
-    print(f"..> {input_}")

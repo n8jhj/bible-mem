@@ -32,10 +32,10 @@ def create_db():
             """
             CREATE TABLE verses (
                 id INTEGER PRIMARY KEY,
-                book TEXT,
+                book TEXT NOT NULL,
                 chapter INTEGER,
-                verse_num INTEGER,
-                text TEXT
+                verse_num INTEGER NOT NULL,
+                text TEXT NOT NULL
             )
             """
         )
