@@ -1,4 +1,4 @@
-from bible_mem.view import main_loop, term
+from bible_mem.app import main_loop, term
 
 
 if __name__ == "__main__":

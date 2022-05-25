@@ -1,35 +1,9 @@
 import blessed
 
 from .__version__ import VERSION
-from .db import reset_db
-from .input import wait_for_editor_input, wait_for_key_enter
 
 
-term = blessed.Terminal()
-
-
-def main_loop():
-    draw_splash_screen()
-
-    with term.hidden_cursor(), term.cbreak():
-        ks = None
-        while True:
-            ks = term.inkey(timeout=3)
-            if ks.code == term.KEY_ESCAPE:
-                break
-            elif ks == "0":
-                reset_db()
-                draw_reset_db_screen()
-                wait_for_key_enter(term)
-                draw_splash_screen()
-            elif ks == "1":
-                draw_add_verse_screen_1()
-                input_ = wait_for_editor_input(term)
-                draw_splash_screen()
-                print(f"..> {input_}")
-
-
-def draw_splash_screen():
+def draw_splash_screen(term: blessed.Terminal):
     welcome_text = "Welcome to Bible_mem!"
     version_text = f"v {VERSION}"
     options_text = [
@@ -68,7 +42,7 @@ def draw_splash_screen():
         )
 
 
-def draw_reset_db_screen():
+def draw_reset_db_screen(term: blessed.Terminal):
     info_text = "Database reset"
     status_text = "Press ENTER to continue"
 
@@ -92,7 +66,7 @@ def draw_reset_db_screen():
         )
 
 
-def draw_add_verse_screen_1():
+def draw_add_verse_screen_1(term: blessed.Terminal):
     info_text = [
         "Type verse reference:",
         "  (E.g. 2 Timothy 1:7)",
