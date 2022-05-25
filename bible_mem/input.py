@@ -38,7 +38,7 @@ def wait_for_editor_input(term: blessed.Terminal) -> str:
             break
         elif ks.code == term.KEY_BACKSPACE:
             text = text[:-1]
-            echo(term.move_left(1) + "  " + term.move_left(2))
+            echo(term.move_left(1) + " " * 2 + term.move_left(2))
         elif input_filter(ks):
             text += ks
             echo(ks)
