@@ -2,7 +2,7 @@ import blessed
 
 from .__version__ import VERSION
 from .db import reset_db
-from .editor import wait_for_editor_input
+from .input import wait_for_editor_input, wait_for_key_enter
 
 
 term = blessed.Terminal()
@@ -20,7 +20,7 @@ def main_loop():
             elif ks == "0":
                 reset_db()
                 draw_reset_db_screen()
-                wait_for_key_enter()
+                wait_for_key_enter(term)
                 draw_splash_screen()
             elif ks == "1":
                 draw_add_verse_screen_1()
@@ -90,14 +90,6 @@ def draw_reset_db_screen():
             + term.cub(5)
             + term.normal
         )
-
-
-def wait_for_key_enter():
-    ks = None
-    while True:
-        ks = term.inkey(timeout=3)
-        if ks.code == term.KEY_ENTER:
-            break
 
 
 def draw_add_verse_screen_1():

@@ -20,6 +20,14 @@ def input_filter(keystroke: Keystroke):
     return True
 
 
+def wait_for_key_enter(term: blessed.Terminal):
+    ks = None
+    while True:
+        ks = term.inkey(timeout=3)
+        if ks.code == term.KEY_ENTER:
+            break
+
+
 def wait_for_editor_input(term: blessed.Terminal) -> str:
     text = ""
     ks = None
