@@ -17,12 +17,20 @@ def main_loop():
             if ks.code == term.KEY_ESCAPE:
                 break
             elif ks == "0":
-                reset_db()
-                draw_reset_db_screen(term)
-                wait_for_key_enter(term)
-                draw_splash_screen(term)
+                do_reset_db()
             elif ks == "1":
-                draw_add_verse_screen_1(term)
-                input_ = wait_for_editor_input(term)
-                draw_splash_screen(term)
-                print(f"..> {input_}")
+                do_add_verse()
+
+
+def do_reset_db():
+    reset_db()
+    draw_reset_db_screen(term)
+    wait_for_key_enter(term)
+    draw_splash_screen(term)
+
+
+def do_add_verse():
+    draw_add_verse_screen_1(term)
+    input_ = wait_for_editor_input(term)
+    draw_splash_screen(term)
+    print(f"..> {input_}")
