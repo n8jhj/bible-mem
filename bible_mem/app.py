@@ -9,9 +9,8 @@ term = blessed.Terminal()
 
 
 def main_loop():
-    draw_splash_screen(term)
-
-    with term.hidden_cursor(), term.cbreak():
+    with term.fullscreen(), term.hidden_cursor(), term.cbreak():
+        draw_splash_screen(term)
         ks = None
         while True:
             ks = term.inkey(timeout=3)

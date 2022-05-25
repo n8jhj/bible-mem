@@ -1,6 +1,5 @@
-from bible_mem.app import main_loop, term
+from bible_mem.app import main_loop
 
 
 if __name__ == "__main__":
-    with term.fullscreen():
-        main_loop()
+    main_loop()
