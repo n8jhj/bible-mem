@@ -2,6 +2,8 @@
     "cSpell.words": [
         "cbreak",
         "fullscreen",
-        "inkey"
+        "inkey",
+        "platformdirs",
+        "userdata"
     ]
 }
