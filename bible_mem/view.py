@@ -18,22 +18,14 @@ def draw_text_screen(term: blessed.Terminal, content: list[str], status: str):
     line1_length = term.length(term.center(content[0]).rstrip())
     line1_start = line1_length - len(content[0])
     with term.location(0, term.height // 2 - 4):
-        print(
-            term.normal
-            + term.center(content[0])
-        )
+        print(term.normal + term.center(content[0]))
         for line in content[1:]:
-            print(
-                term.ljust(" " * line1_start + line)
-            )
+            print(term.ljust(" " * line1_start + line))
 
     # Print status bar.
     with term.location(0, term.height - 2):
         print(
-            term.snow_on_cyan
-            + term.ljust(" " * 2 + status)
-            + term.cub(5)
-            + term.normal
+            term.snow_on_cyan + term.ljust(" " * 2 + status) + term.cub(5) + term.normal
         )
 
 
