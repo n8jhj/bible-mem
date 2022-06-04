@@ -40,7 +40,7 @@ def draw_splash_screen(term: blessed.Terminal):
             "  1: Add verse",
             "  2: Quiz verses",
         ],
-        status="Press ESCAPE to quit",
+        status="ESCAPE to quit",
     )
 
 
@@ -48,7 +48,7 @@ def draw_reset_db_screen(term: blessed.Terminal):
     draw_text_screen(
         term,
         content=["Database reset"],
-        status="Press ENTER to continue",
+        status="ENTER to continue",
     )
 
 
@@ -59,7 +59,7 @@ def draw_add_verse_screen_1(term: blessed.Terminal):
             "Type verse reference:",
             "  (E.g. 2 Timothy 1:7)",
         ],
-        status="Press ENTER to submit",
+        status="ENTER to submit",
     )
 
 
@@ -67,7 +67,7 @@ def draw_add_verse_screen_1_error(term: blessed.Terminal, bad_ref: str):
     draw_text_screen(
         term,
         content=[f"Invalid reference: {bad_ref!r}"],
-        status="Press ENTER to continue",
+        status="ENTER to continue",
     )
 
 
@@ -75,5 +75,5 @@ def draw_add_verse_screen_2(term: blessed.Terminal, verse: Verse):
     draw_text_screen(
         term,
         content=[f"Accepted: {verse}"],
-        status="Press ENTER to continue",
+        status="ENTER to continue",
     )
