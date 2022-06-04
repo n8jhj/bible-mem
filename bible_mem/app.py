@@ -36,7 +36,6 @@ def do_reset_db():
 
 
 def do_add_verse():
-    ref_accepted = False
     while True:
         draw_add_verse_screen_1(term)
         input_ = wait_for_editor_input(term)

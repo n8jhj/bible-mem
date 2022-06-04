@@ -1,6 +1,6 @@
 from __future__ import annotations
 import blessed
-from typing import TYPE_CHECKING, Callable
+from typing import TYPE_CHECKING
 
 from .__version__ import VERSION
 
