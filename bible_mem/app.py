@@ -38,7 +38,10 @@ def do_reset_db():
 def do_add_verse():
     while True:
         draw_add_verse_screen_1(term)
-        input_ = wait_for_editor_input(term)
+        input_, escape = wait_for_editor_input(term)
+        if escape:
+            draw_splash_screen(term)
+            return
         verse = None
         try:
             verse = parse_reference(input_)

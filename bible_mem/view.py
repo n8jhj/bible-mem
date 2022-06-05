@@ -59,7 +59,7 @@ def draw_add_verse_screen_1(term: blessed.Terminal):
             "Type verse reference:",
             "  (E.g. 2 Timothy 1:7)",
         ],
-        status="ENTER to submit",
+        status="ENTER to submit        ESCAPE to go back",
     )
 
 

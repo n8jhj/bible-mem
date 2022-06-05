@@ -1,6 +1,6 @@
 import functools
 import re
-from typing import NamedTuple, Optional
+from typing import NamedTuple, Optional, Tuple
 
 import blessed
 from blessed.keyboard import Keystroke
@@ -30,13 +30,17 @@ def wait_for_key_enter(term: blessed.Terminal):
             break
 
 
-def wait_for_editor_input(term: blessed.Terminal) -> str:
+def wait_for_editor_input(term: blessed.Terminal) -> Tuple[str, bool]:
     text = ""
+    escape = False
     ks = None
     while True:
         echo(term.reverse(" ") + term.move_left(1))
         ks = term.inkey(timeout=3)
         if ks.code == term.KEY_ENTER:
+            break
+        elif ks.code == term.KEY_ESCAPE:
+            escape = True
             break
         elif ks.code == term.KEY_BACKSPACE:
             text = text[:-1]
@@ -44,7 +48,7 @@ def wait_for_editor_input(term: blessed.Terminal) -> str:
         elif input_filter(ks):
             text += ks
             echo(ks)
-    return text
+    return text, escape
 
 
 class Verse(NamedTuple):
