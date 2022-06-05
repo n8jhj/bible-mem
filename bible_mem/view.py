@@ -1,6 +1,6 @@
 from __future__ import annotations
 import blessed
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 
 from .__version__ import VERSION
 
@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from .input import Verse
 
 
-def draw_text_screen(term: blessed.Terminal, content: list[str], status: str):
+def draw_text_screen(term: blessed.Terminal, content: List[str], status: str):
     # Check input.
     assert len(content) > 0, "There's no content"
     # Flush screen.
@@ -71,9 +71,17 @@ def draw_add_verse_screen_1_error(term: blessed.Terminal, bad_ref: str):
     )
 
 
-def draw_add_verse_screen_2(term: blessed.Terminal, verse: Verse):
+def draw_add_verse_screen_2(term: blessed.Terminal):
     draw_text_screen(
         term,
-        content=[f"Accepted: {verse}"],
+        content=["Type verse text:"],
+        status="ENTER to submit        ESCAPE to go back",
+    )
+
+
+def draw_add_verse_screen_3(term: blessed.Terminal, verse: Verse):
+    draw_text_screen(
+        term,
+        content=[f"{verse} added."],
         status="ENTER to continue",
     )

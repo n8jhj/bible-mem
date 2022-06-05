@@ -1,6 +1,7 @@
+from dataclasses import dataclass
 import functools
 import re
-from typing import NamedTuple, Optional, Tuple
+from typing import Optional, Tuple
 
 import blessed
 from blessed.keyboard import Keystroke
@@ -51,7 +52,8 @@ def wait_for_editor_input(term: blessed.Terminal) -> Tuple[str, bool]:
     return text, escape
 
 
-class Verse(NamedTuple):
+@dataclass
+class Verse:
     book: str
     chapter: Optional[int]
     verse_num: int

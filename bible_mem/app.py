@@ -1,11 +1,12 @@
 import blessed
 
-from .db import reset_db
+from .db import add_verse, reset_db
 from .input import parse_reference, wait_for_editor_input, wait_for_key_enter
 from .view import (
     draw_add_verse_screen_1,
     draw_add_verse_screen_1_error,
     draw_add_verse_screen_2,
+    draw_add_verse_screen_3,
     draw_reset_db_screen,
     draw_splash_screen,
 )
@@ -50,6 +51,13 @@ def do_add_verse():
             wait_for_key_enter(term)
             continue
         break
-    draw_add_verse_screen_2(term, verse)
+    draw_add_verse_screen_2(term)
+    text, escape = wait_for_editor_input(term)
+    if escape:
+        draw_splash_screen(term)
+        return
+    verse.text = text
+    add_verse(verse)
+    draw_add_verse_screen_3(term, verse)
     wait_for_key_enter(term)
     draw_splash_screen(term)

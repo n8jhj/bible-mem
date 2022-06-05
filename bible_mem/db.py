@@ -1,9 +1,14 @@
+from __future__ import annotations
 from pathlib import Path
 import sqlite3
+from typing import TYPE_CHECKING
 
 import platformdirs
 
 from bible_mem.__version__ import VERSION
+
+if TYPE_CHECKING:
+    from .input import Verse
 
 
 APP_NAME = "bible_mem"
@@ -40,4 +45,17 @@ def create_db():
             """
         )
     # Must close when finished.
+    con.close()
+
+
+def add_verse(verse: Verse):
+    con = sqlite3.connect(DB_PATH)
+    with con:
+        con.execute(
+            """
+            INSERT INTO verses (book, chapter, verse_num, text)
+            VALUES (?, ?, ?, ?)
+            """,
+            (verse.book, verse.chapter, verse.verse_num, verse.text),
+        )
     con.close()
