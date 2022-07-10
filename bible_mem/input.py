@@ -32,7 +32,10 @@ def wait_for_key_enter(term: blessed.Terminal):
 
 
 def wait_for_editor_input(term: blessed.Terminal) -> Tuple[str, bool]:
+    padding = 4  # spaces
+    print(term.move_down(1) + term.move_right(padding), end="")
     text = ""
+    line = 0
     escape = False
     ks = None
     while True:
@@ -44,11 +47,39 @@ def wait_for_editor_input(term: blessed.Terminal) -> Tuple[str, bool]:
             escape = True
             break
         elif ks.code == term.KEY_BACKSPACE:
+            if not text:
+                continue
             text = text[:-1]
             echo(term.move_left(1) + " " * 2 + term.move_left(2))
+            with term.location(0, 2):
+                print(
+                    " " * 2
+                    + " " * 9
+                    + term.move_left(9)
+                    + f"{len(text)} / {term.width - 2 * padding}"
+                )
+                print(" " * 2 + str(term.width))
+            if (div := len(text) // (term.width - 2 * padding)) < line:
+                line = div
+                with term.location(0, 4):
+                    print(term.snow_on_red + " " * 2 + "BWD" + term.normal)
+                echo(term.move_up(1) + term.move_x(term.width - padding - 1))
         elif input_filter(ks):
             text += ks
-            echo(ks)
+            echo(len(text) % 10)
+            with term.location(0, 2):
+                print(
+                    " " * 2
+                    + " " * 9
+                    + term.move_left(9)
+                    + f"{len(text)} / {term.width - 2 * padding}"
+                )
+                print(" " * 2 + str(term.width))
+            if (div := len(text) // (term.width - 2 * padding)) > line:
+                line = div
+                with term.location(0, 4):
+                    print(term.snow_on_green + " " * 2 + "FWD" + term.normal)
+                echo(term.move_down(1) + term.move_x(padding))
     return text, escape
 
 
