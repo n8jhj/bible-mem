@@ -1,14 +1,12 @@
 from __future__ import annotations
 from pathlib import Path
 import sqlite3
-from typing import TYPE_CHECKING
+from typing import Optional
 
 import platformdirs
 
 from bible_mem.__version__ import VERSION
-
-if TYPE_CHECKING:
-    from .input import Verse
+from .input import Verse
 
 
 APP_NAME = "bible_mem"
@@ -59,3 +57,20 @@ def add_verse(verse: Verse):
             (verse.book, verse.chapter, verse.verse_num, verse.text),
         )
     con.close()
+
+
+def select_random_verse() -> Optional[Verse]:
+    con = sqlite3.connect(DB_PATH)
+    # Get columns from result by name.
+    con.row_factory = sqlite3.Row
+    row = None
+    with con:
+        row = con.execute("SELECT * FROM verses ORDER BY RANDOM() LIMIT 1;").fetchone()
+    if not row:
+        return
+    return Verse(
+        book=row["book"],
+        chapter=row["chapter"],
+        verse_num=row["verse_num"],
+        text=row["text"],
+    )

@@ -7,6 +7,7 @@ from .view import (
     draw_add_verse_screen_1_error,
     draw_add_verse_screen_2,
     draw_add_verse_screen_3,
+    draw_quiz_verse_screen_1,
     draw_reset_db_screen,
     draw_splash_screen,
 )
@@ -27,6 +28,8 @@ def main_loop():
                 do_reset_db()
             elif ks == "1":
                 do_add_verse()
+            elif ks == "2":
+                do_quiz_verse()
 
 
 def do_reset_db():
@@ -60,4 +63,16 @@ def do_add_verse():
     add_verse(verse)
     draw_add_verse_screen_3(term, verse)
     wait_for_key_enter(term)
+    draw_splash_screen(term)
+
+
+def do_quiz_verse():
+    if not draw_quiz_verse_screen_1(term):
+        wait_for_key_enter(term)
+        draw_splash_screen(term)
+        return
+    input_, escape = wait_for_editor_input(term)
+    if escape:
+        draw_splash_screen(term)
+        return
     draw_splash_screen(term)

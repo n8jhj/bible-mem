@@ -3,6 +3,7 @@ import blessed
 from typing import TYPE_CHECKING, List
 
 from .__version__ import VERSION
+from .db import select_random_verse
 
 if TYPE_CHECKING:
     from .input import Verse
@@ -61,7 +62,7 @@ def draw_add_verse_screen_1(term: blessed.Terminal):
             "Type verse reference:",
             "  (E.g. 2 Timothy 1:7)",
         ],
-        status="ENTER to submit        ESCAPE to go back",
+        status="ENTER to submit" + " " * 8 + "ESCAPE to go back",
     )
 
 
@@ -77,7 +78,7 @@ def draw_add_verse_screen_2(term: blessed.Terminal):
     draw_text_screen(
         term,
         content=["Type verse text:"],
-        status="ENTER to submit        ESCAPE to go back",
+        status="ENTER to submit" + " " * 8 + "ESCAPE to go back",
     )
 
 
@@ -87,3 +88,20 @@ def draw_add_verse_screen_3(term: blessed.Terminal, verse: Verse):
         content=[f"{verse} added."],
         status="ENTER to continue",
     )
+
+
+def draw_quiz_verse_screen_1(term: blessed.Terminal) -> bool:
+    verse = select_random_verse()
+    if not verse:
+        draw_text_screen(
+            term,
+            content=["There are no verses in the database."],
+            status="Enter to continue",
+        )
+        return False
+    draw_text_screen(
+        term,
+        content=["Type verse text for:", f"  {verse}"],
+        status="ENTER to submit" + " " * 8 + "ESCAPE to go back",
+    )
+    return True
