@@ -1,6 +1,8 @@
+import difflib
+
 import blessed
 
-from .db import add_verse, reset_db
+from .db import add_verse, reset_db, select_random_verse
 from .input import parse_reference, wait_for_editor_input, wait_for_key_enter
 from .view import (
     draw_add_verse_screen_1,
@@ -8,6 +10,7 @@ from .view import (
     draw_add_verse_screen_2,
     draw_add_verse_screen_3,
     draw_quiz_verse_screen_1,
+    draw_quiz_verse_screen_2,
     draw_reset_db_screen,
     draw_splash_screen,
 )
@@ -67,7 +70,9 @@ def do_add_verse():
 
 
 def do_quiz_verse():
-    if not draw_quiz_verse_screen_1(term):
+    verse = select_random_verse()
+    draw_quiz_verse_screen_1(term, verse)
+    if not verse:
         wait_for_key_enter(term)
         draw_splash_screen(term)
         return
@@ -75,4 +80,8 @@ def do_quiz_verse():
     if escape:
         draw_splash_screen(term)
         return
+    d = difflib.Differ()
+    result = list(d.compare([verse.text + "\n"], [input_ + "\n"]))
+    draw_quiz_verse_screen_2(term, result)
+    wait_for_key_enter(term)
     draw_splash_screen(term)

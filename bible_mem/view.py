@@ -1,9 +1,9 @@
 from __future__ import annotations
+from typing import TYPE_CHECKING, List, Optional
+
 import blessed
-from typing import TYPE_CHECKING, List
 
 from .__version__ import VERSION
-from .db import select_random_verse
 
 if TYPE_CHECKING:
     from .input import Verse
@@ -90,18 +90,24 @@ def draw_add_verse_screen_3(term: blessed.Terminal, verse: Verse):
     )
 
 
-def draw_quiz_verse_screen_1(term: blessed.Terminal) -> bool:
-    verse = select_random_verse()
+def draw_quiz_verse_screen_1(term: blessed.Terminal, verse: Optional[Verse]):
     if not verse:
         draw_text_screen(
             term,
             content=["There are no verses in the database."],
             status="Enter to continue",
         )
-        return False
+        return
     draw_text_screen(
         term,
         content=["Type verse text for:", f"  {verse}"],
         status="ENTER to submit" + " " * 8 + "ESCAPE to go back",
     )
-    return True
+
+
+def draw_quiz_verse_screen_2(term: blessed.Terminal, diff_lines: list[str]):
+    draw_text_screen(
+        term,
+        content=diff_lines,
+        status="Enter to continue",
+    )
