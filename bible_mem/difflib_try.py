@@ -42,7 +42,9 @@ def difflib_try():
     echo("\n")
 
 
-def generate_unify_pairs(seq_a: str, seq_b: str):
+def generate_unify_pairs(
+    seq_a: str, seq_b: str
+) -> "tuple[list[tuple[str, str]], list[tuple[str, str]]]":
     """Generates pairs of actions to be taken to unify sequence differences.
 
     Args:
